@@ -11,7 +11,7 @@ console.clear();
     const d = new Date(year, month, 0).getDate();
     const n = new Date(year, month, 1).getDay();
 
-    for (let i =0; i < n; i++) {
+    for (let i = 0; i < n; i++) {
       dates.unshift({
         date: d - i,
         isToday: false,
@@ -67,8 +67,23 @@ console.clear();
       weeks.push(dates.splice(0, 7));
     }
 
-    // console.log(dates);
-    console.log(weeks);
+    weeks.forEach(week => {
+      const tr = document.createElement('tr');
+      week.forEach(date => {
+        const td = document.createElement('td');
+
+        td.textContent = date.date;
+        if (date.isToday) {
+          td.classList.add('today');
+        }
+        if (date.isDisabled) {
+          td.classList.add('disabled');
+        }
+
+        tr.appendChild(td);
+      });
+      document.querySelector('tbody').appendChild(tr);
+    });
   }
 
   createCalendar();
