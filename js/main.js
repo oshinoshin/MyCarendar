@@ -19,7 +19,7 @@ console.clear();
       });
     }
 
-  console.log(dates);
+    return dates;
   }
 
   
@@ -36,7 +36,7 @@ console.clear();
       });
     }
 
-    console.log(dates)
+    return dates;
   }
 
   function getCalendarTail() {
@@ -51,11 +51,26 @@ console.clear();
       });
     }
 
-    console.log(dates);
+    return dates;
   }
 
-  // getCalendarHead();
-  // getCalendarBody();
-  getCalendarTail();
+  function createCalendar() {
+    const dates = [
+      ...getCalendarHead(),
+      ...getCalendarBody(),
+      ...getCalendarTail(),
+    ];
+    const weeks = [];
+    const weeksCount = dates.length / 7;
+
+    for (let i = 0; i < weeksCount; i++) {
+      weeks.push(dates.splice(0, 7));
+    }
+
+    // console.log(dates);
+    console.log(weeks);
+  }
+
+  createCalendar();
 
 }
